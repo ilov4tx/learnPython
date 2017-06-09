@@ -20,9 +20,9 @@ try:
                          '</div>.*?'+
                          '<div class="stats.*?class="number">(.*?)</i>',re.S)
     items = re.findall(pattern, content)
-    print(len(items),'my')
+    print('匹配数量:',len(items))
     for item in items:
-        print(item,'a')
+        print(item)
 
 except urllib.request.URLError or e:
     if hasattr(e,'code'):
