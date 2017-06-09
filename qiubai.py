@@ -11,17 +11,21 @@ try:
     #print(respone.read())
 
     content = respone.read().decode('utf-8')
-    pattern = re.compile('<div(.*?)author clearfix">',re.S)
+    pattern = re.compile('<div.*?author clearfix">.*?'+
+                         '<a.*?<img.*?>.*?'+
+                         '</a>.*?'+
+                         '<div.*?'+
+                         'content">.*?'+
+                         '<span>(.*?)</span>.*?'+
+                         '</div>.*?'+
+                         '<div class="stats.*?class="number">(.*?)</i>',re.S)
     items = re.findall(pattern, content)
     print(len(items),'my')
     for item in items:
-        print(item[0],item[1],'a')
+        print(item,'a')
 
 except urllib.request.URLError or e:
     if hasattr(e,'code'):
         print(e.code)
     if hasattr(e,'reason'):
         print(e.reason)
-
-
-
